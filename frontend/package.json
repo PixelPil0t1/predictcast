@@ -32,10 +32,10 @@
     "@zerodev/presets": "5.3.3",
     "@zerodev/sdk": "5.5.6",
     "@zerodev/session-key": "5.5.4",
-    "axios": "^1.13.2",
+    "axios": "^1.6.0",
     "ethers": "^6.10.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "viem": "^2.39.3",
     "wagmi": "^3.0.1",
     "@reown/walletkit": "^1.2.3",
@@ -59,7 +59,7 @@
     "globals": "^16.5.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.47.0",
-    "vite": "^7.2.4"
+    "vite": "^7.0.0"
   }
 }
 
