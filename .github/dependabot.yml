@@ -4,14 +4,14 @@ updates:
     directory: "/frontend"
     schedule:
       interval: "daily"
-      time: "19:00"
-      timezone: "Europe/Kiev"
+      time: "07:00"
+      timezone: "Europe/Warsaw"
     open-pull-requests-limit: 10
 
   - package-ecosystem: "npm"
     directory: "/backend"
     schedule:
       interval: "daily"
-      time: "19:00"
-      timezone: "Europe/Kiev"
+      time: "07:00"
+      timezone: "Europe/Warsaw"
     open-pull-requests-limit: 10
