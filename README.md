@@ -6,7 +6,7 @@ Event prediction platform with Web3 integration, Farcaster Frame, and WalletConn
 
 ```
 predictcast/
-├── backend/           # Node.js API (Hono + SQLite)
+├── backend/           
 │   ├── src/
 │   │   ├── config/    # Configuration
 │   │   ├── database/  # Database and migrations
