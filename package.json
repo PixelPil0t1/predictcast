@@ -1,0 +1,25 @@
+{
+  "name": "predictcast",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "npm-run-all --parallel install:*",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "build": "npm-run-all build:*",
+    "build:backend": "echo 'Backend is JS - no build needed'",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
+
