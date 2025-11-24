@@ -27,7 +27,7 @@
     "@walletconnect/sign-client": "2.20.0",
     "@walletconnect/types": "2.20.0",
     "@walletconnect/universal-provider": "2.20.0",
-    "@walletconnect/utils": "2.20.0",
+    "@walletconnect/utils": "2.23.0",
     "@zerodev/ecdsa-validator": "5.4.0",
     "@zerodev/presets": "5.3.0",
     "@zerodev/sdk": "5.5.0",
