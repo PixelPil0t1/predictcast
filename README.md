@@ -1,42 +1,42 @@
 # 🔮 PredictCast
 
-Платформа для прогнозування подій з Web3 інтеграцією, Farcaster Frame та WalletConnect.
+Event prediction platform with Web3 integration, Farcaster Frame, and WalletConnect.
 
-## 📦 Структура проекту
+## 📦 Project Structure
 
 ```
 predictcast/
 ├── backend/           # Node.js API (Hono + SQLite)
 │   ├── src/
-│   │   ├── config/    # Конфігурація
-│   │   ├── database/  # БД та міграції
-│   │   ├── routes/    # API маршрути
-│   │   ├── services/  # Бізнес-логіка
+│   │   ├── config/    # Configuration
+│   │   ├── database/  # Database and migrations
+│   │   ├── routes/    # API routes
+│   │   ├── services/  # Business logic
 │   │   └── middleware/# Middleware
 │   └── package.json
 │
 └── frontend/          # React 19 + TypeScript + Vite
     ├── src/
-    │   ├── components/ # UI компоненти
-    │   ├── pages/      # Сторінки
-    │   ├── features/   # Функціональні модулі
+    │   ├── components/ # UI components
+    │   ├── pages/      # Pages
+    │   ├── features/   # Feature modules
     │   ├── hooks/      # React hooks
-    │   ├── services/   # API сервіси
-    │   ├── utils/      # Утиліти
-    │   ├── config/     # Конфігурація
-    │   └── styles/     # Стилі
+    │   ├── services/   # API services
+    │   ├── utils/      # Utilities
+    │   ├── config/     # Configuration
+    │   └── styles/     # Styles
     └── package.json
 ```
 
-## 🚀 Швидкий старт
+## 🚀 Quick Start
 
 ### Backend
 
 ```bash
 cd backend
 npm install
-npm run db:migrate    # Створити БД
-npm run db:seed       # Додати тестові дані (опціонально)
+npm run db:migrate    # Create database
+npm run db:seed       # Add test data (optional)
 npm run dev           # http://localhost:3001
 ```
 
@@ -48,80 +48,80 @@ npm install
 npm run dev           # http://localhost:5173
 ```
 
-## 🔧 Технології
+## 🔧 Technologies
 
 ### Backend
-- **Hono** - Швидкий веб-фреймворк
-- **SQLite** + better-sqlite3 - База даних
-- **Модульна архітектура** - Routes, Services, Middleware
+- **Hono** - Fast web framework
+- **SQLite** + better-sqlite3 - Database
+- **Modular architecture** - Routes, Services, Middleware
 
 ### Frontend
 - **React 19** + TypeScript
-- **Vite 6** - Швидкий білдер
-- **Wagmi 3** - Ethereum інтеграція
-- **WalletConnect AppKit** - Підключення гаманців
-- **@tanstack/react-query** - Управління даними
-- **Farcaster Frame SDK** - Frame інтеграція
-- **Lens Protocol, ZeroDev, Solana** та інші Web3 бібліотеки
+- **Vite 6** - Fast build tool
+- **Wagmi 3** - Ethereum integration
+- **WalletConnect AppKit** - Wallet connection
+- **@tanstack/react-query** - Data management
+- **Farcaster Frame SDK** - Frame integration
+- **Lens Protocol, ZeroDev, Solana** and other Web3 libraries
 
-## 📋 Функціонал
+## 📋 Features
 
-- ✅ Перегляд активних подій для прогнозування
-- ✅ Створення нових подій (адміни з API ключем)
-- ✅ Прогнозування результатів
-- ✅ Статистика по подіях та користувачам
-- ✅ Підключення Web3 гаманців
-- ✅ Інтеграція з Farcaster Frame
-- ✅ Реал-тайм оновлення даних
+- ✅ Browse active events for prediction
+- ✅ Create new events (admins with API key)
+- ✅ Make predictions
+- ✅ Statistics for events and users
+- ✅ Web3 wallet connection
+- ✅ Farcaster Frame integration
+- ✅ Real-time data updates
 
-## 🎨 Архітектурні рішення
+## 🎨 Architecture
 
 ### Backend
-- **Service Layer Pattern** - Бізнес-логіка окремо від роутів
-- **Repository Pattern** - Робота з БД через сервіси
-- **Middleware** - Аутентифікація та валідація
+- **Service Layer Pattern** - Business logic separated from routes
+- **Repository Pattern** - Database access through services
+- **Middleware** - Authentication and validation
 
 ### Frontend
-- **Feature-based структура** - Логічне групування за функціоналом
-- **Custom Hooks** - Переіспользуваna логіка
-- **Path aliases** - Зручний імпорт (`@components`, `@hooks`)
-- **React Query** - Кешування та синхронізація даних
+- **Feature-based structure** - Logical grouping by functionality
+- **Custom Hooks** - Reusable logic
+- **Path aliases** - Convenient imports (`@components`, `@hooks`)
+- **React Query** - Caching and data synchronization
 
-## 🔐 Безпека
+## 🔐 Security
 
-- API ключі для створення подій
-- Валідація даних на клієнті та сервері
-- CORS налаштування
-- Prepared statements для захисту від SQL injection
+- API keys for event creation
+- Data validation on client and server
+- CORS configuration
+- Prepared statements to protect against SQL injection
 
 ## 📊 API Endpoints
 
 ```
 GET    /api/health                    # Health check
-GET    /api/events                    # Список подій
-GET    /api/events/:id                # Конкретна подія
-POST   /api/events                    # Створити подію (auth)
-POST   /api/events/:id/resolve        # Закрити подію (auth)
-POST   /api/predictions               # Зробити прогноз
-GET    /api/predictions/user/:address # Прогнози користувача
-GET    /api/stats/event/:eventId      # Статистика події
-GET    /api/stats/user/:address       # Статистика користувача
+GET    /api/events                    # List events
+GET    /api/events/:id                # Get specific event
+POST   /api/events                    # Create event (auth)
+POST   /api/events/:id/resolve        # Close event (auth)
+POST   /api/predictions               # Make prediction
+GET    /api/predictions/user/:address # User predictions
+GET    /api/stats/event/:eventId      # Event statistics
+GET    /api/stats/user/:address       # User statistics
 ```
 
 ## 🤖 Dependabot
 
-Автоматичне оновлення залежностей налаштовано для обох папок:
+Automatic dependency updates configured for both folders:
 - `/frontend`
 - `/backend`
 
-## 📄 Ліцензія
+## 📄 License
 
 MIT
 
-## 👨‍💻 Розробка
+## 👨‍💻 Development
 
-Проект використовує:
-- ESM модулі
+Project uses:
+- ESM modules
 - TypeScript strict mode
-- React 19 з новими features
-- Сучасні Web3 стандарти
+- React 19 with new features
+- Modern Web3 standards

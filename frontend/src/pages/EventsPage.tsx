@@ -13,7 +13,7 @@ export function EventsPage() {
   const [selectedOption, setSelectedOption] = useState('');
   const { data: stats } = useEventStats(selectedEvent?.id || null);
   const createPrediction = useCreatePrediction();
-  const userAddress = 'user:demo'; // З гаманця в реальному додатку
+  const userAddress = 'user:demo'; // From wallet in real app
 
   const handlePredict = async () => {
     if (!selectedEvent || !selectedOption) return;
@@ -24,7 +24,7 @@ export function EventsPage() {
         userAddress,
         selectedOption,
       });
-      alert('✅ Прогноз збережено!');
+      alert('✅ Prediction saved!');
     } catch (error: any) {
       alert('❌ ' + error.message);
     }
@@ -32,7 +32,7 @@ export function EventsPage() {
 
   if (isLoading) return <LoadingSpinner />;
   if (!events || events.length === 0) {
-    return <EmptyState icon="🎯" title="Немає активних подій" description="Перевірте пізніше" />;
+    return <EmptyState icon="🎯" title="No active events" description="Check back later" />;
   }
 
   if (selectedEvent) {
@@ -41,7 +41,7 @@ export function EventsPage() {
     return (
       <div className="fade-in">
         <button className="btn btn-secondary" onClick={() => setSelectedEvent(null)} style={{marginBottom:'var(--space-lg)'}}>
-          ← Назад до списку
+          ← Back to list
         </button>
         
         <div className="card">
@@ -52,7 +52,7 @@ export function EventsPage() {
             )}
             <div style={{display:'flex',gap:'var(--space-md)',marginTop:'var(--space-md)',flexWrap:'wrap'}}>
               <span className={`badge ${selectedEvent.isActive ? 'badge-success' : 'badge-neutral'}`}>
-                {selectedEvent.isActive ? 'Активна' : 'Закрита'}
+                {selectedEvent.isActive ? 'Active' : 'Closed'}
               </span>
               <span style={{fontSize:'0.875rem',color:'var(--text-muted)'}}>
                 ⏰ {timeLeft}
@@ -63,7 +63,7 @@ export function EventsPage() {
             </div>
           </div>
 
-          <h3 style={{marginBottom:'var(--space-md)'}}>Оберіть відповідь:</h3>
+          <h3 style={{marginBottom:'var(--space-md)'}}>Choose your answer:</h3>
           <div style={{display:'flex',flexDirection:'column',gap:'var(--space-sm)'}}>
             {selectedEvent.options.map(option => (
               <div
@@ -94,14 +94,14 @@ export function EventsPage() {
             disabled={!selectedOption || !selectedEvent.isActive}
             style={{marginTop:'var(--space-lg)',width:'100%'}}
           >
-            Зберегти прогноз
+            Save prediction
           </button>
 
           {stats && stats.total > 0 && (
             <div style={{marginTop:'var(--space-lg)',padding:'var(--space-md)',background:'var(--bg-secondary)',borderRadius:'var(--radius-md)'}}>
-              <h4 style={{marginBottom:'var(--space-sm)'}}>Статистика:</h4>
+              <h4 style={{marginBottom:'var(--space-sm)'}}>Statistics:</h4>
               <p style={{fontSize:'0.875rem',color:'var(--text-muted)'}}>
-                Всього прогнозів: <b style={{color:'var(--text-primary)'}}>{stats.total}</b>
+                Total predictions: <b style={{color:'var(--text-primary)'}}>{stats.total}</b>
               </p>
             </div>
           )}
@@ -112,7 +112,7 @@ export function EventsPage() {
 
   return (
     <div className="fade-in">
-      <h2 style={{marginBottom:'var(--space-lg)'}}>Активні події</h2>
+      <h2 style={{marginBottom:'var(--space-lg)'}}>Active Events</h2>
       <div style={{display:'flex',flexDirection:'column',gap:'var(--space-md)'}}>
         {events.map(event => (
           <div
@@ -137,7 +137,7 @@ export function EventsPage() {
                 </div>
               </div>
               <span className={`badge ${event.isActive ? 'badge-success' : 'badge-neutral'}`}>
-                {event.isActive ? 'Активна' : 'Закрита'}
+                {event.isActive ? 'Active' : 'Closed'}
               </span>
             </div>
           </div>
@@ -146,4 +146,3 @@ export function EventsPage() {
     </div>
   );
 }
-

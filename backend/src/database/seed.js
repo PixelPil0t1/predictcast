@@ -2,12 +2,12 @@ import { getDatabase } from './connection.js';
 
 const db = getDatabase();
 
-// Приклад початкових даних (опціонально)
+// Sample initial data (optional)
 const sampleEvent = {
   id: crypto.randomUUID(),
-  title: 'Чи досягне Bitcoin $100k у 2025?',
-  description: 'Прогноз на досягнення BTC позначки $100,000',
-  options_json: JSON.stringify(['Так', 'Ні', 'Можливо']),
+  title: 'Will Bitcoin reach $100k in 2025?',
+  description: 'Prediction for BTC reaching $100,000 milestone',
+  options_json: JSON.stringify(['Yes', 'No', 'Maybe']),
   creator_address: '0xSampleCreator',
   created_at: Date.now(),
   closes_at: Date.now() + 30 * 24 * 60 * 60 * 1000, // 30 днів

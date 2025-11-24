@@ -5,7 +5,7 @@ import { authMiddleware } from '../middleware/auth.js';
 export const eventsRouter = new Hono();
 const eventService = new EventService();
 
-// Отримати всі активні події
+// Get all active events
 eventsRouter.get('/', c => {
   try {
     const events = eventService.getActiveEvents();
@@ -15,7 +15,7 @@ eventsRouter.get('/', c => {
   }
 });
 
-// Отримати конкретну подію
+// Get specific event
 eventsRouter.get('/:id', c => {
   try {
     const event = eventService.getEventById(c.req.param('id'));
@@ -26,7 +26,7 @@ eventsRouter.get('/:id', c => {
   }
 });
 
-// Створити нову подію (потребує авторизації)
+// Create new event (requires authentication)
 eventsRouter.post('/', authMiddleware, async c => {
   try {
     const body = await c.req.json();
@@ -37,7 +37,7 @@ eventsRouter.post('/', authMiddleware, async c => {
   }
 });
 
-// Закрити подію та встановити результат (потребує авторизації)
+// Close event and set result (requires authentication)
 eventsRouter.post('/:id/resolve', authMiddleware, async c => {
   try {
     const body = await c.req.json();

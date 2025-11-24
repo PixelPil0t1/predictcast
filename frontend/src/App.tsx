@@ -11,9 +11,9 @@ import { MyPredictionsPage } from '@pages/MyPredictionsPage';
 type TabId = 'events' | 'create' | 'predictions';
 
 const TABS = [
-  { id: 'events' as const, label: 'Події' },
-  { id: 'create' as const, label: 'Створити' },
-  { id: 'predictions' as const, label: 'Мої прогнози' },
+  { id: 'events' as const, label: 'Events' },
+  { id: 'create' as const, label: 'Create' },
+  { id: 'predictions' as const, label: 'My Predictions' },
 ];
 
 export default function App() {

@@ -13,7 +13,7 @@ export function CreateEventPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   
   const createEvent = useCreateEvent();
-  const creatorAddress = '0xCreator'; // З гаманця
+  const creatorAddress = '0xCreator'; // From wallet
 
   const handleSubmit = async () => {
     setErrors({});
@@ -39,7 +39,7 @@ export function CreateEventPage() {
     }
 
     if (!apiKey) {
-      setErrors(prev => ({ ...prev, apiKey: 'API ключ обов\'язковий' }));
+      setErrors(prev => ({ ...prev, apiKey: 'API key is required' }));
       return;
     }
 
@@ -48,7 +48,7 @@ export function CreateEventPage() {
         data: { title, description, options, closesAt, creatorAddress, category },
         apiKey,
       });
-      alert('✅ Подію створено!');
+      alert('✅ Event created!');
       setTitle('');
       setDescription('');
       setOptionsText('');
@@ -61,38 +61,38 @@ export function CreateEventPage() {
 
   return (
     <div className="card fade-in">
-      <h2 style={{marginBottom:'var(--space-lg)'}}>Створити нову подію</h2>
+      <h2 style={{marginBottom:'var(--space-lg)'}}>Create New Event</h2>
       
       <div style={{display:'flex',flexDirection:'column',gap:'var(--space-md)'}}>
         <div>
           <label style={{display:'block',marginBottom:'var(--space-xs)',fontSize:'0.875rem',fontWeight:500}}>
-            Назва події *
+            Event Title *
           </label>
           <input
             className="input"
             value={title}
             onChange={e => setTitle(e.target.value)}
-            placeholder="Наприклад: Чи досягне Bitcoin $100k у 2025?"
+            placeholder="e.g., Will Bitcoin reach $100k in 2025?"
           />
           {errors.title && <p style={{color:'var(--accent-danger)',fontSize:'0.75rem',marginTop:'var(--space-xs)'}}>{errors.title}</p>}
         </div>
 
         <div>
           <label style={{display:'block',marginBottom:'var(--space-xs)',fontSize:'0.875rem',fontWeight:500}}>
-            Опис (необов'язково)
+            Description (optional)
           </label>
           <textarea
             className="textarea"
             value={description}
             onChange={e => setDescription(e.target.value)}
-            placeholder="Додаткова інформація..."
+            placeholder="Additional information..."
             rows={3}
           />
         </div>
 
         <div>
           <label style={{display:'block',marginBottom:'var(--space-xs)',fontSize:'0.875rem',fontWeight:500}}>
-            Категорія
+            Category
           </label>
           <select className="select" value={category} onChange={e => setCategory(e.target.value)}>
             {CATEGORIES.map(cat => (
@@ -103,13 +103,13 @@ export function CreateEventPage() {
 
         <div>
           <label style={{display:'block',marginBottom:'var(--space-xs)',fontSize:'0.875rem',fontWeight:500}}>
-            Варіанти відповідей * (кожен з нового рядка)
+            Answer Options * (one per line)
           </label>
           <textarea
             className="textarea"
             value={optionsText}
             onChange={e => setOptionsText(e.target.value)}
-            placeholder="Так\nНі\nМожливо"
+            placeholder="Yes\nNo\nMaybe"
             rows={5}
           />
           {errors.options && <p style={{color:'var(--accent-danger)',fontSize:'0.75rem',marginTop:'var(--space-xs)'}}>{errors.options}</p>}
@@ -117,7 +117,7 @@ export function CreateEventPage() {
 
         <div>
           <label style={{display:'block',marginBottom:'var(--space-xs)',fontSize:'0.875rem',fontWeight:500}}>
-            Кількість днів до закриття
+            Days Until Closing
           </label>
           <input
             type="number"
@@ -132,14 +132,14 @@ export function CreateEventPage() {
 
         <div>
           <label style={{display:'block',marginBottom:'var(--space-xs)',fontSize:'0.875rem',fontWeight:500}}>
-            API ключ * (тільки для адмінів)
+            API Key * (admins only)
           </label>
           <input
             type="password"
             className="input"
             value={apiKey}
             onChange={e => setApiKey(e.target.value)}
-            placeholder="Введіть API ключ"
+            placeholder="Enter API key"
           />
           {errors.apiKey && <p style={{color:'var(--accent-danger)',fontSize:'0.75rem',marginTop:'var(--space-xs)'}}>{errors.apiKey}</p>}
         </div>
@@ -150,16 +150,15 @@ export function CreateEventPage() {
           disabled={createEvent.isPending}
           style={{width:'100%',marginTop:'var(--space-sm)'}}
         >
-          {createEvent.isPending ? 'Створення...' : 'Створити подію'}
+          {createEvent.isPending ? 'Creating...' : 'Create Event'}
         </button>
       </div>
 
       <div style={{marginTop:'var(--space-lg)',padding:'var(--space-md)',background:'var(--bg-secondary)',borderRadius:'var(--radius-md)'}}>
         <p style={{fontSize:'0.75rem',color:'var(--text-muted)'}}>
-          💡 Тільки користувачі з API ключем можуть створювати події
+          💡 Only users with an API key can create events
         </p>
       </div>
     </div>
   );
 }
-

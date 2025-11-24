@@ -4,7 +4,7 @@ import { PredictionService } from '../services/predictionService.js';
 export const predictionsRouter = new Hono();
 const predictionService = new PredictionService();
 
-// Зробити прогноз
+// Make prediction
 predictionsRouter.post('/', async c => {
   try {
     const body = await c.req.json();
@@ -15,7 +15,7 @@ predictionsRouter.post('/', async c => {
   }
 });
 
-// Отримати прогнози користувача
+// Get user predictions
 predictionsRouter.get('/user/:address', c => {
   try {
     const predictions = predictionService.getUserPredictions(c.req.param('address'));
@@ -25,7 +25,7 @@ predictionsRouter.get('/user/:address', c => {
   }
 });
 
-// Отримати прогнози для конкретної події
+// Get predictions for specific event
 predictionsRouter.get('/event/:eventId', c => {
   try {
     const predictions = predictionService.getEventPredictions(c.req.param('eventId'));

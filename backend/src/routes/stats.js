@@ -4,7 +4,7 @@ import { StatsService } from '../services/statsService.js';
 export const statsRouter = new Hono();
 const statsService = new StatsService();
 
-// Статистика по події
+// Event statistics
 statsRouter.get('/event/:eventId', c => {
   try {
     const stats = statsService.getEventStats(c.req.param('eventId'));
@@ -14,7 +14,7 @@ statsRouter.get('/event/:eventId', c => {
   }
 });
 
-// Статистика по користувачу
+// User statistics
 statsRouter.get('/user/:address', c => {
   try {
     const stats = statsService.getUserStats(c.req.param('address'));

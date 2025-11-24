@@ -1,40 +1,40 @@
 export function validateEventTitle(title: string): string | null {
   if (!title || title.trim().length === 0) {
-    return 'Назва події обов\'язкова';
+    return 'Event title is required';
   }
   if (title.length < 10) {
-    return 'Назва повинна містити мінімум 10 символів';
+    return 'Title must be at least 10 characters';
   }
   if (title.length > 200) {
-    return 'Назва занадто довга (макс. 200 символів)';
+    return 'Title is too long (max 200 characters)';
   }
   return null;
 }
 
 export function validateOptions(options: string[]): string | null {
   if (!options || options.length < 2) {
-    return 'Додайте мінімум 2 варіанти відповіді';
+    return 'Add at least 2 answer options';
   }
   if (options.length > 10) {
-    return 'Максимум 10 варіантів відповіді';
+    return 'Maximum 10 answer options';
   }
   const emptyOptions = options.filter(o => !o.trim());
   if (emptyOptions.length > 0) {
-    return 'Всі варіанти повинні містити текст';
+    return 'All options must contain text';
   }
   return null;
 }
 
 export function validateClosingDate(timestamp: number): string | null {
   const now = Date.now();
-  const minFuture = now + 60 * 60 * 1000; // Мінімум 1 година
-  const maxFuture = now + 365 * 24 * 60 * 60 * 1000; // Максимум 1 рік
+  const minFuture = now + 60 * 60 * 1000; // Minimum 1 hour
+  const maxFuture = now + 365 * 24 * 60 * 60 * 1000; // Maximum 1 year
   
   if (timestamp < minFuture) {
-    return 'Подія повинна закритися мінімум через 1 годину';
+    return 'Event must close at least 1 hour in the future';
   }
   if (timestamp > maxFuture) {
-    return 'Подія не може тривати більше року';
+    return 'Event cannot last more than 1 year';
   }
   return null;
 }

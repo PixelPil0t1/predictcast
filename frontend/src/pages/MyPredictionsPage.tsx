@@ -5,18 +5,18 @@ import { EmptyState } from '@components/ui/EmptyState';
 import { formatDateTime } from '@utils/formatters';
 
 export function MyPredictionsPage() {
-  const userAddress = 'user:demo'; // З гаманця
+  const userAddress = 'user:demo'; // From wallet
   const { data: predictions, isLoading } = useUserPredictions(userAddress);
   const { data: stats } = useUserStats(userAddress);
 
-  if (isLoading) return <LoadingSpinner message="Завантаження прогнозів..." />;
+  if (isLoading) return <LoadingSpinner message="Loading predictions..." />;
   
   if (!predictions || predictions.length === 0) {
     return (
       <EmptyState
         icon="🎯"
-        title="У вас ще немає прогнозів"
-        description="Перейдіть на вкладку 'Події' щоб зробити перший прогноз!"
+        title="You don't have any predictions yet"
+        description="Go to the 'Events' tab to make your first prediction!"
       />
     );
   }
@@ -25,18 +25,18 @@ export function MyPredictionsPage() {
     <div className="fade-in">
       {stats && (
         <div className="card" style={{marginBottom:'var(--space-lg)'}}>
-          <h3 style={{marginBottom:'var(--space-md)'}}>📊 Ваша статистика</h3>
+          <h3 style={{marginBottom:'var(--space-md)'}}>📊 Your Statistics</h3>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))',gap:'var(--space-md)'}}>
             <div>
-              <p style={{fontSize:'0.75rem',color:'var(--text-muted)',marginBottom:'var(--space-xs)'}}>Всього прогнозів</p>
+              <p style={{fontSize:'0.75rem',color:'var(--text-muted)',marginBottom:'var(--space-xs)'}}>Total Predictions</p>
               <p style={{fontSize:'1.5rem',fontWeight:'bold'}}>{stats.totalPredictions}</p>
             </div>
             <div>
-              <p style={{fontSize:'0.75rem',color:'var(--text-muted)',marginBottom:'var(--space-xs)'}}>Правильних</p>
+              <p style={{fontSize:'0.75rem',color:'var(--text-muted)',marginBottom:'var(--space-xs)'}}>Correct</p>
               <p style={{fontSize:'1.5rem',fontWeight:'bold',color:'var(--accent-secondary)'}}>{stats.correctPredictions}</p>
             </div>
             <div>
-              <p style={{fontSize:'0.75rem',color:'var(--text-muted)',marginBottom:'var(--space-xs)'}}>Точність</p>
+              <p style={{fontSize:'0.75rem',color:'var(--text-muted)',marginBottom:'var(--space-xs)'}}>Accuracy</p>
               <p style={{fontSize:'1.5rem',fontWeight:'bold',color:stats.accuracy >= 50 ? 'var(--accent-secondary)' : 'var(--accent-warning)'}}>
                 {stats.accuracy}%
               </p>
@@ -45,7 +45,7 @@ export function MyPredictionsPage() {
         </div>
       )}
 
-      <h2 style={{marginBottom:'var(--space-lg)'}}>Мої прогнози</h2>
+      <h2 style={{marginBottom:'var(--space-lg)'}}>My Predictions</h2>
       
       <div style={{display:'flex',flexDirection:'column',gap:'var(--space-md)'}}>
         {predictions.map(pred => {
@@ -57,12 +57,12 @@ export function MyPredictionsPage() {
               <div style={{display:'flex',justifyContent:'space-between',alignItems:'start',marginBottom:'var(--space-sm)'}}>
                 <h3 style={{margin:0,flex:1}}>{pred.title}</h3>
                 <span className={`badge ${pred.isActive ? 'badge-success' : 'badge-neutral'}`}>
-                  {pred.isActive ? 'Активна' : 'Завершено'}
+                  {pred.isActive ? 'Active' : 'Ended'}
                 </span>
               </div>
 
               <div style={{display:'flex',gap:'var(--space-md)',flexWrap:'wrap',fontSize:'0.875rem',color:'var(--text-muted)'}}>
-                <span>🔮 Прогноз: <b style={{color:'var(--text-primary)'}}>{pred.selectedOption}</b></span>
+                <span>🔮 Prediction: <b style={{color:'var(--text-primary)'}}>{pred.selectedOption}</b></span>
                 <span>📅 {formatDateTime(pred.predictedAt)}</span>
               </div>
 
@@ -75,16 +75,16 @@ export function MyPredictionsPage() {
                   border:`1px solid ${isCorrect ? 'var(--accent-secondary)' : 'var(--accent-danger)'}`
                 }}>
                   <p style={{margin:0,fontSize:'0.875rem'}}>
-                    <b>Результат:</b> {pred.finalResult}
-                    {isCorrect && <span style={{color:'var(--accent-secondary)',marginLeft:'var(--space-sm)'}}>✅ Правильно!</span>}
-                    {isWrong && <span style={{color:'var(--accent-danger)',marginLeft:'var(--space-sm)'}}>❌ Неправильно</span>}
+                    <b>Result:</b> {pred.finalResult}
+                    {isCorrect && <span style={{color:'var(--accent-secondary)',marginLeft:'var(--space-sm)'}}>✅ Correct!</span>}
+                    {isWrong && <span style={{color:'var(--accent-danger)',marginLeft:'var(--space-sm)'}}>❌ Incorrect</span>}
                   </p>
                 </div>
               )}
 
               {pred.isActive && pred.closesAt && (
                 <p style={{marginTop:'var(--space-sm)',fontSize:'0.75rem',color:'var(--text-muted)'}}>
-                  Завершується: {formatDateTime(pred.closesAt)}
+                  Closes: {formatDateTime(pred.closesAt)}
                 </p>
               )}
             </div>
@@ -94,4 +94,3 @@ export function MyPredictionsPage() {
     </div>
   );
 }
-

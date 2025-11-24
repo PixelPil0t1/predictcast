@@ -6,7 +6,7 @@ export const API_CONFIG = {
 export const WALLET_CONFIG = {
   PROJECT_ID: import.meta.env.VITE_PROJECT_ID || 'PREDICTCAST_DEMO',
   APP_NAME: 'PredictCast',
-  APP_DESCRIPTION: 'Платформа для прогнозування подій',
+  APP_DESCRIPTION: 'Event prediction platform with Web3',
   APP_URL: 'https://predictcast.app',
 };
 
@@ -18,10 +18,10 @@ export const ROUTES = {
 } as const;
 
 export const CATEGORIES = [
-  { value: 'crypto', label: 'Криптовалюти' },
-  { value: 'sports', label: 'Спорт' },
-  { value: 'politics', label: 'Політика' },
-  { value: 'tech', label: 'Технології' },
-  { value: 'general', label: 'Загальне' },
+  { value: 'crypto', label: 'Cryptocurrency' },
+  { value: 'sports', label: 'Sports' },
+  { value: 'politics', label: 'Politics' },
+  { value: 'tech', label: 'Technology' },
+  { value: 'general', label: 'General' },
 ] as const;
 

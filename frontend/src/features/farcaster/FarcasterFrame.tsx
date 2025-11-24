@@ -20,9 +20,9 @@ export function useFarcasterFrame() {
               src: 'https://dummyimage.com/1200x630/0f1420/10b981&text=PredictCast',
               aspectRatio: '1.91:1',
             }),
-            text('🔮 Зроби свій прогноз на майбутні події та отримуй нагороди!'),
+            text('🔮 Make predictions on future events and earn rewards!'),
             button({
-              label: 'Відкрити додаток',
+              label: 'Open App',
               onClick: ({ state }) => ({ ...state, open: true }),
             })
           ),

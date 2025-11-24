@@ -2,7 +2,7 @@ interface LoadingSpinnerProps {
   message?: string;
 }
 
-export function LoadingSpinner({ message = 'Завантаження...' }: LoadingSpinnerProps) {
+export function LoadingSpinner({ message = 'Loading...' }: LoadingSpinnerProps) {
   return (
     <div className="card" style={{
       display: 'flex',

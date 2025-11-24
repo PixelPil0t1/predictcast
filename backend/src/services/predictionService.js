@@ -10,7 +10,7 @@ export class PredictionService {
       throw new Error('Missing required fields');
     }
 
-    // Перевірка, чи подія активна
+    // Check if event is active
     const event = this.db.prepare('SELECT is_active, closes_at FROM events WHERE id = ?').get(eventId);
     if (!event) throw new Error('Event not found');
     if (!event.is_active) throw new Error('Event is closed');
@@ -32,7 +32,7 @@ export class PredictionService {
         predictedAt: now 
       };
     } catch (error) {
-      // Якщо вже є прогноз - оновлюємо
+      // If prediction exists - update it
       this.db.prepare(`
         UPDATE user_predictions 
         SET selected_option = ?, predicted_at = ?
